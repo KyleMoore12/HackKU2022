@@ -1,6 +1,16 @@
 #addNew {
     margin-left: 80px;
+    background-color: #ffffff;
+    text-align: center;
+    border: 1.5px solid #000000;
+    border-radius: 2px;
+    transition-duration: 0.4s;
 }
+#addNew:hover{
+    background-color: #61c0ff;
+    color: white;
+}
+
 
 /* #addNew {  
     margin-left: 1px;
