@@ -1,14 +1,29 @@
 body {
-    min-width:500px;
-    min-width:500px;
+    min-width: 400px;
+    max-width: 400px;
 }
-
+h1 {
+    font-family: 'Beau Rivage', cursive;
+    background-image: linear-gradient(
+        to right,
+        #307cff 65%,
+        red 65%,
+        red 85%,
+        #307cff 85%
+    );
+    position: fixed;
+    padding-right: 240px;
+}
 #addModal {
-    display: none;
     position: fixed;
     top: 10px;
     left: 10px;
     bottom: 10px;
     right: 10px;
     background-color: lightgray;
-} 
+}
+
+.buttonWrapper {
+    display: flex;
+    justify-content: space-between;
+}
