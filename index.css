@@ -1,10 +1,18 @@
 body {
     min-width: 400px;
     max-width: 400px;
-    
 }
 h1 {
     font-family: 'Beau Rivage', cursive;
+    background-image: linear-gradient(
+        to right,
+        #307cff 65%,
+        red 65%,
+        red 85%,
+        #307cff 85%
+    );
+    position: fixed;
+    padding-right: 240px;
 }
 #addModal {
     position: relative;
