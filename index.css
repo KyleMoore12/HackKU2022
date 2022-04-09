@@ -15,6 +15,7 @@ h1 {
     padding-right: 240px;
 }
 #addModal {
+    z-index: 100;
     position: fixed;
     top: 10px;
     left: 10px;
