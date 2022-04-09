@@ -1,8 +1,23 @@
+const urlInput = document.getElementById('urlInput');
+const descriptionInput = document.getElementById('descriptionInput');
+const todosInput = document.getElementById('todosInput');
+const submitButton = document.getElementById('addSubmitButton');
+const addNewModal = document.getElementById('addModal');
+
 function removeAllChildNodes(parent) {
   while (parent.firstChild) {
       parent.removeChild(parent.firstChild);
   }
 }
+
+function randomId() {
+  let timestamp = (new Date().getTime() / 1000 | 0).toString(16);
+
+  return timestamp + 'xxxxxxxxxxxxxxxx'.replace(/[x]/g, function () {
+    return (Math.random() * 16 | 0).toString(16);
+  }).toLowerCase();
+}
+
 
 function delLink(id){
   chrome.storage.sync.get("links", ({ links }) => {
@@ -17,18 +32,17 @@ function delLink(id){
 
 }
 
-
 const addNew = document.getElementById("addNew");
 
-function addLink() {
+function addLink(url, description, todos) {
   chrome.storage.sync.get("links", ({ links }) => {
     let linksParsed = JSON.parse(links);
 
     linksParsed.push({
-      id: 'ogsdfgdsfgsgfdjgfdsk',
-      link: 'https://googleiuhhhjhjhjhjghjghgjjhg.com',
-      description: "this is google",
-      todos: ['check out google', 'testing']
+      id: randomId(),
+      link: url,
+      description,
+      todos
     })
 
     chrome.storage.sync.set({ links: JSON.stringify(linksParsed) });
@@ -77,8 +91,6 @@ function renderLinks() {
         todoDescription.innerText = linksParsed[i].todos[j];
 
         todoList.appendChild(todoDescription);
-
-
       }
 
       node.appendChild(todoList);
@@ -90,9 +102,12 @@ function renderLinks() {
 }
 
 addNew.addEventListener("click", () => {
-  console.log('add new');
-  addLink();
+  addNewModal.style.display = 'block';
 })
 
+submitButton.addEventListener("click", () => {
+  addLink(urlInput.value, descriptionInput.value, [todosInput.value]);
+  addNewModal.style.display = 'none';
+})
 
 renderLinks()

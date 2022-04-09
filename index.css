@@ -1,4 +1,14 @@
 body {
-    min-width:300px;
-    font-family: 'Beau Rivage', cursive;
+    min-width:500px;
+    min-width:500px;
 }
+
+#addModal {
+    display: none;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    bottom: 10px;
+    right: 10px;
+    background-color: lightgray;
+} 
