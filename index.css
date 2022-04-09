@@ -7,7 +7,7 @@ h1 {
     font-family: 'Beau Rivage', cursive;
 }
 #addModal {
-    position: fixed;
+    position: relative;
     top: 10px;
     left: 10px;
     bottom: 10px;
