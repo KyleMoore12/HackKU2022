@@ -1,4 +1,13 @@
 body {
-    min-width:300px;
+    min-width: 400px;
+    max-width: 400px;
+    
+}
+h1 {
     font-family: 'Beau Rivage', cursive;
+}
+
+.buttonWrapper {
+    display: flex;
+    justify-content: space-between;
 }
