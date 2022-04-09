@@ -61,18 +61,33 @@ function renderLinks() {
       console.log(i, linksParsed[i])
       const node = document.createElement("div");
 
+      const buttonWrapper = document.createElement('div')
+      buttonWrapper.classList.add('buttonWrapper')
+
+      const attribute = document.createElement("a");
+      attribute.href = linksParsed[i].link;
+      attribute.target = "_blank"
+
+      if (linksParsed[i].link.length >= 40) {
+        attribute.innerText = String(linksParsed[i].link).slice(0,40) + '...';
+      } else {
+        attribute.innerText = linksParsed[i].link;
+      }
+
+      buttonWrapper.appendChild(attribute);
+
       const delButton = document.createElement("button");
+      delButton.classList.add('delLink');
       delButton.innerText = "delete"
       delButton.addEventListener("click", (() => {
         delLink(linksParsed[i].id)
 
 
       }))
-      node.appendChild(delButton)
+      buttonWrapper.appendChild(delButton)
 
-      const attribute = document.createElement("a");
-      attribute.innerText = linksParsed[i].link;
-      node.appendChild(attribute);
+      node.appendChild(buttonWrapper)
+
 
       const description = document.createElement("p");
       description.innerText = linksParsed[i].description;

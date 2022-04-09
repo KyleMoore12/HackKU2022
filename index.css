@@ -1,5 +1,9 @@
 body {
-    min-width:300px;
+    min-width: 400px;
+    max-width: 400px;
+    
+}
+h1 {
     font-family: 'Beau Rivage', cursive;
 }
 #addModal {
@@ -9,4 +13,9 @@ body {
     bottom: 10px;
     right: 10px;
     background-color: lightgray;
+}
+
+.buttonWrapper {
+    display: flex;
+    justify-content: space-between;
 }
