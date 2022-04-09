@@ -5,24 +5,22 @@
     border: 1.5px solid #000000;
     border-radius: 2px;
     transition-duration: 0.4s;
+    
 }
 #addNew:hover{
     background-color: #61c0ff;
     color: white;
 }
-#delLink{
+.delLink{
     background-color: #ffffff;
     text-align: center;
     border: 1.5px solid #000000;
     border-radius: 2px;
     transition-duration: 0.4s;
 }
-#delLink:hover{
+.delLink:hover{
     background-color: #ff3030;
     color: white;
-}
-h1{
-    font-family: 
 }
 
 
