@@ -3,10 +3,12 @@ const descriptionInput = document.getElementById('descriptionInput');
 const todosInput = document.getElementById('todosInput');
 const submitButton = document.getElementById('addSubmitButton');
 const addNewModal = document.getElementById('addModal');
+const addNew = document.getElementById("addNew");
+
 
 function removeAllChildNodes(parent) {
   while (parent.firstChild) {
-      parent.removeChild(parent.firstChild);
+    parent.removeChild(parent.firstChild);
   }
 }
 
@@ -19,7 +21,7 @@ function randomId() {
 }
 
 
-function delLink(id){
+function delLink(id) {
   chrome.storage.sync.get("links", ({ links }) => {
     let linksParsed = JSON.parse(links);
 
@@ -32,7 +34,6 @@ function delLink(id){
 
 }
 
-const addNew = document.getElementById("addNew");
 
 function addLink(url, description, todos) {
   chrome.storage.sync.get("links", ({ links }) => {
