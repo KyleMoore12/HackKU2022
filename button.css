@@ -1,11 +1,12 @@
 #addNew {
+    position: fixed;
+    bottom: 10px;
     margin-left: 0px;
     background-color: #ffffff;
     text-align: center;
     border: 1.5px solid #000000;
     border-radius: 2px;
     transition-duration: 0.4s;
-    
 }
 #addNew:hover{
     background-color: #61c0ff;
