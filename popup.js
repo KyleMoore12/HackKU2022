@@ -1,10 +1,10 @@
 function removeAllChildNodes(parent) {
   while (parent.firstChild) {
-      parent.removeChild(parent.firstChild);
+    parent.removeChild(parent.firstChild);
   }
 }
 
-function delLink(id){
+function delLink(id) {
   chrome.storage.sync.get("links", ({ links }) => {
     let linksParsed = JSON.parse(links);
 
@@ -20,12 +20,20 @@ function delLink(id){
 
 const addNew = document.getElementById("addNew");
 
+function randomId() {
+  let timestamp = (new Date().getTime() / 1000 | 0).toString(16);
+
+  return timestamp + 'xxxxxxxxxxxxxxxx'.replace(/[x]/g, function () {
+    return (Math.random() * 16 | 0).toString(16);
+  }).toLowerCase();
+}
+
 function addLink() {
   chrome.storage.sync.get("links", ({ links }) => {
     let linksParsed = JSON.parse(links);
 
     linksParsed.push({
-      id: 'ogsdfgdsfgsgfdjgfdsk',
+      id: randomId(),
       link: 'https://googleiuhhhjhjhjhjghjghgjjhg.com',
       description: "this is google",
       todos: ['check out google', 'testing']
