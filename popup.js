@@ -1,7 +1,34 @@
-let addNew = document.getElementById("addNew");
-let linkContainer = document.getElementById("linkContainer");
+function removeAllChildNodes(parent) {
+  while (parent.firstChild) {
+      parent.removeChild(parent.firstChild);
+  }
+}
+
+const addNew = document.getElementById("addNew");
+
+function addLink() {
+  chrome.storage.sync.get("links", ({ links }) => {
+    let linksParsed = JSON.parse(links);
+
+    linksParsed.push({
+      id: 'ojgfdsk',
+      link: 'https://googleiuhhhjhjhjhjghjghgjjhg.com',
+      description: "this is google",
+      todos: ['check out google', 'testing']
+    })
+
+    chrome.storage.sync.set({ links: JSON.stringify(linksParsed) });
+
+    renderLinks();
+  });
+}
+
+const linkContainer = document.getElementById("linkContainer");
 
 function renderLinks() {
+  removeAllChildNodes(linkContainer);
+
+
   chrome.storage.sync.get("links", ({ links }) => {
     let linksParsed = JSON.parse(links);
 
@@ -21,16 +48,16 @@ function renderLinks() {
       node.appendChild(description);
 
       const todoList = document.createElement("ul");
-      
+
       for (let j = 0; j < linksParsed[i].todos.length; j++) {
         const todoDescription = document.createElement("li");
         todoDescription.innerText = linksParsed[i].todos[j];
 
         todoList.appendChild(todoDescription);
 
-      
+
       }
- 
+
       node.appendChild(todoList);
 
 
@@ -41,6 +68,7 @@ function renderLinks() {
 
 addNew.addEventListener("click", () => {
   console.log('add new');
+  addLink();
 })
 
 
