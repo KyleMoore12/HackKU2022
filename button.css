@@ -10,6 +10,20 @@
     background-color: #61c0ff;
     color: white;
 }
+#delLink{
+    background-color: #ffffff;
+    text-align: center;
+    border: 1.5px solid #000000;
+    border-radius: 2px;
+    transition-duration: 0.4s;
+}
+#delLink:hover{
+    background-color: #ff3030;
+    color: white;
+}
+h1{
+    font-family: 
+}
 
 
 /* #addNew {  
