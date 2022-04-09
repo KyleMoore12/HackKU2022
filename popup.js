@@ -4,6 +4,20 @@ function removeAllChildNodes(parent) {
   }
 }
 
+function delLink(id){
+  chrome.storage.sync.get("links", ({ links }) => {
+    let linksParsed = JSON.parse(links);
+
+    let filteredLinks = linksParsed.filter(item => item.id !== id)
+
+    chrome.storage.sync.set({ links: JSON.stringify(filteredLinks) });
+
+    renderLinks();
+  });
+
+}
+
+
 const addNew = document.getElementById("addNew");
 
 function addLink() {
@@ -11,7 +25,7 @@ function addLink() {
     let linksParsed = JSON.parse(links);
 
     linksParsed.push({
-      id: 'ojgfdsk',
+      id: 'ogsdfgdsfgsgfdjgfdsk',
       link: 'https://googleiuhhhjhjhjhjghjghgjjhg.com',
       description: "this is google",
       todos: ['check out google', 'testing']
@@ -38,6 +52,15 @@ function renderLinks() {
 
       console.log(i, linksParsed[i])
       const node = document.createElement("div");
+
+      const delButton = document.createElement("button");
+      delButton.innerText = "delete"
+      delButton.addEventListener("click", (() => {
+        delLink(linksParsed[i].id)
+
+
+      }))
+      node.appendChild(delButton)
 
       const attribute = document.createElement("a");
       attribute.innerText = linksParsed[i].link;
