@@ -68,18 +68,19 @@ function renderLinks() {
       console.log(i, linksParsed[i])
       const node = document.createElement("div");
 
-      const delButton = document.createElement("button");
-      delButton.innerText = "delete"
-      delButton.addEventListener("click", (() => {
-        delLink(linksParsed[i].id)
-
-
-      }))
-      node.appendChild(delButton)
 
       const attribute = document.createElement("a");
       attribute.innerText = linksParsed[i].link;
       node.appendChild(attribute);
+
+      const delButton = document.createElement("button");
+      delButton.innerText = "delete"
+      delButton.classList.add('delLink')
+      delButton.addEventListener("click", (() => {
+        delLink(linksParsed[i].id)
+      }))
+      node.appendChild(delButton)
+
 
       const description = document.createElement("p");
       description.innerText = linksParsed[i].description;
@@ -103,12 +104,14 @@ function renderLinks() {
 }
 
 addNew.addEventListener("click", () => {
-  addNewModal.style.display = 'block';
+  addNewModal.style.opacity = '1';
+  addNewModal.style.pointerEvents = 'auto';
 })
 
 submitButton.addEventListener("click", () => {
   addLink(urlInput.value, descriptionInput.value, [todosInput.value]);
-  addNewModal.style.display = 'none';
+  addNewModal.style.opacity = '0';
+  addNewModal.style.pointerEvents = 'none';
 })
 
 renderLinks()

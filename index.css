@@ -1,31 +1,46 @@
 body {
+    background-image: linear-gradient(
+        to right,
+        #307cff 90%,
+        #392fa3 90%
+    );
     min-width: 400px;
     max-width: 400px;
 }
 h1 {
+    margin-bottom: 10px;
     font-family: 'Beau Rivage', cursive;
-    background-image: linear-gradient(
-        to right,
-        #307cff 65%,
-        red 65%,
-        red 85%,
-        #307cff 85%
-    );
-    position: fixed;
+    font-size: 24px;
+    color: white;
     padding-right: 240px;
+    padding-left: 10px;
 }
 #addModal {
-    display: none;
+    pointer-events: none;
+    opacity: 0;
+    transition: 300ms ease-in-out all;
     z-index: 100;
     position: fixed;
+    text-align: center;
+    font-family:'Times New Roman', Times, serif;
+    font-size: 20px;
+    padding-top: 60px;
     top: 10px;
     left: 10px;
     bottom: 10px;
     right: 10px;
-    background-color: lightgray;
+    background-color: #4abdd4;
 }
 
 .buttonWrapper {
     display: flex;
     justify-content: space-between;
+}
+
+#linkContainer{
+    background-color: white;
+    padding-left: 2px;
+    height: 250px;
+    width: 360px;
+    overflow: auto;
 }
