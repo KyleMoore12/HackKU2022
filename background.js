@@ -5,3 +5,6 @@ let test = [{
     todos: ['check out google']
 }]
 
+chrome.runtime.onInstalled.addListener(() => {
+    chrome.storage.sync.set({ links: JSON.stringify(test) });
+  });
