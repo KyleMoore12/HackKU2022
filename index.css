@@ -1,21 +1,49 @@
 body {
+    background-image: linear-gradient(
+        to right,
+        #307cff 90%,
+        #392fa3 90%
+    );
     min-width: 400px;
-    max-width: 400px;
-    
+    max-width: 400px;   
+    min-height: 310px;
 }
+
 h1 {
+    margin-top: 0px;
+    margin-bottom: 10px;
     font-family: 'Beau Rivage', cursive;
+    font-size: 24px;
+    color: white;
+    padding-left: 10px;
+
 }
 #addModal {
+    pointer-events: none;
+    opacity: 0;
+    transition: 300ms ease-in-out all;
+    z-index: 100;
     position: fixed;
+    text-align: center;
+    font-family:'Times New Roman', Times, serif;
+    font-size: 20px;
+    padding-top: 60px;
     top: 10px;
     left: 10px;
     bottom: 10px;
     right: 10px;
-    background-color: lightgray;
+    background-color: #4abdd4;
 }
 
-.buttonWrapper {
+.deleteButtonWrapper {
     display: flex;
     justify-content: space-between;
+}
+
+#linkContainer{
+    background-color: white;
+    padding-left: 2px;
+    height: 250px;
+    width: 360px;
+    overflow: auto;
 }

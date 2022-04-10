@@ -1,8 +1,26 @@
+const urlInput = document.getElementById('urlInput');
+const descriptionInput = document.getElementById('descriptionInput');
+const todosInput = document.getElementById('todosInput');
+const submitButton = document.getElementById('addSubmitButton');
+const addNewModal = document.getElementById('addModal');
+const addNew = document.getElementById("addNew");
+const addModalForm = document.getElementById("addModalForm");
+
+
 function removeAllChildNodes(parent) {
   while (parent.firstChild) {
     parent.removeChild(parent.firstChild);
   }
 }
+
+function randomId() {
+  let timestamp = (new Date().getTime() / 1000 | 0).toString(16);
+
+  return timestamp + 'xxxxxxxxxxxxxxxx'.replace(/[x]/g, function () {
+    return (Math.random() * 16 | 0).toString(16);
+  }).toLowerCase();
+}
+
 
 function delLink(id) {
   chrome.storage.sync.get("links", ({ links }) => {
@@ -18,25 +36,15 @@ function delLink(id) {
 }
 
 
-const addNew = document.getElementById("addNew");
-
-function randomId() {
-  let timestamp = (new Date().getTime() / 1000 | 0).toString(16);
-
-  return timestamp + 'xxxxxxxxxxxxxxxx'.replace(/[x]/g, function () {
-    return (Math.random() * 16 | 0).toString(16);
-  }).toLowerCase();
-}
-
-function addLink() {
+function addLink(url, description, todos) {
   chrome.storage.sync.get("links", ({ links }) => {
     let linksParsed = JSON.parse(links);
 
     linksParsed.push({
       id: randomId(),
-      link: 'https://googleiuhhhjhjhjhjghjghgjjhg.com',
-      description: "this is google",
-      todos: ['check out google', 'testing']
+      link: url,
+      description,
+      todos
     })
 
     chrome.storage.sync.set({ links: JSON.stringify(linksParsed) });
@@ -50,7 +58,6 @@ const linkContainer = document.getElementById("linkContainer");
 function renderLinks() {
   removeAllChildNodes(linkContainer);
 
-
   chrome.storage.sync.get("links", ({ links }) => {
     let linksParsed = JSON.parse(links);
 
@@ -61,33 +68,24 @@ function renderLinks() {
       console.log(i, linksParsed[i])
       const node = document.createElement("div");
 
-      const buttonWrapper = document.createElement('div')
-      buttonWrapper.classList.add('buttonWrapper')
+      const deleteButtonWrapper = document.createElement('div');
+      deleteButtonWrapper.classList.add('deleteButtonWrapper');
 
       const attribute = document.createElement("a");
+      attribute.innerText = linksParsed[i].link;
+      attribute.target = '_blank';
       attribute.href = linksParsed[i].link;
-      attribute.target = "_blank"
-
-      if (linksParsed[i].link.length >= 40) {
-        attribute.innerText = String(linksParsed[i].link).slice(0,40) + '...';
-      } else {
-        attribute.innerText = linksParsed[i].link;
-      }
-
-      buttonWrapper.appendChild(attribute);
+      deleteButtonWrapper.appendChild(attribute);
 
       const delButton = document.createElement("button");
-      delButton.classList.add('delLink');
       delButton.innerText = "delete"
+      delButton.classList.add('delLink')
       delButton.addEventListener("click", (() => {
         delLink(linksParsed[i].id)
-
-
       }))
-      buttonWrapper.appendChild(delButton)
+      deleteButtonWrapper.appendChild(delButton)
 
-      node.appendChild(buttonWrapper)
-
+      node.appendChild(deleteButtonWrapper);
 
       const description = document.createElement("p");
       description.innerText = linksParsed[i].description;
@@ -100,12 +98,9 @@ function renderLinks() {
         todoDescription.innerText = linksParsed[i].todos[j];
 
         todoList.appendChild(todoDescription);
-
-
       }
 
       node.appendChild(todoList);
-
 
       linkContainer.appendChild(node);
     }
@@ -113,9 +108,14 @@ function renderLinks() {
 }
 
 addNew.addEventListener("click", () => {
-  console.log('add new');
-  addLink();
+  addNewModal.style.opacity = '1';
+  addNewModal.style.pointerEvents = 'auto';
 })
 
+addModalForm.addEventListener("submit", () => {
+  addLink(urlInput.value, descriptionInput.value, [todosInput.value]);
+  addNewModal.style.opacity = '0';
+  addNewModal.style.pointerEvents = 'none';
+})
 
 renderLinks()
