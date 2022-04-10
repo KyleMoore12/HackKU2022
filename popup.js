@@ -57,7 +57,6 @@ const linkContainer = document.getElementById("linkContainer");
 function renderLinks() {
   removeAllChildNodes(linkContainer);
 
-
   chrome.storage.sync.get("links", ({ links }) => {
     let linksParsed = JSON.parse(links);
 
@@ -69,16 +68,16 @@ function renderLinks() {
       const node = document.createElement("div");
 
       const delButton = document.createElement("button");
-      delButton.innerText = "delete"
+      delButton.innerText = "delete";
       delButton.addEventListener("click", (() => {
         delLink(linksParsed[i].id)
-
-
-      }))
+      }));
       node.appendChild(delButton)
 
       const attribute = document.createElement("a");
       attribute.innerText = linksParsed[i].link;
+      attribute.target = '_blank';
+      attribute.href = linksParsed[i].link;
       node.appendChild(attribute);
 
       const description = document.createElement("p");
