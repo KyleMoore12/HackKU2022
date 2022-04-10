@@ -14,18 +14,18 @@
     <h1>Temporary Bookmark</h1>
 
     <div id="addModal">
-        <form>
+        <form id="addModalForm">
             <div>
                 <label for="url">Url</label><br/>
-                <input id="urlInput" name="url"></input>
+                <input id="urlInput" name="url" required></input>
             </div>
             <div>
                 <label for="description">Description</label><br/>
-                <textarea id="descriptionInput" name="description"></textarea>
+                <textarea id="descriptionInput" name="description" required></textarea>
             </div>
             <div>
                 <label for="todos">Todos</label><br/>
-                <input id="todosInput" name="todos"></input>
+                <input id="todosInput" name="todos" required></input>
             </div>
 
             <button id="addSubmitButton">Submit</button>

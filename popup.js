@@ -4,6 +4,7 @@ const todosInput = document.getElementById('todosInput');
 const submitButton = document.getElementById('addSubmitButton');
 const addNewModal = document.getElementById('addModal');
 const addNew = document.getElementById("addNew");
+const addModalForm = document.getElementById("addModalForm");
 
 
 function removeAllChildNodes(parent) {
@@ -67,11 +68,14 @@ function renderLinks() {
       console.log(i, linksParsed[i])
       const node = document.createElement("div");
 
+      const deleteButtonWrapper = document.createElement('div');
+      deleteButtonWrapper.classList.add('deleteButtonWrapper');
+
       const attribute = document.createElement("a");
       attribute.innerText = linksParsed[i].link;
       attribute.target = '_blank';
       attribute.href = linksParsed[i].link;
-      node.appendChild(attribute);
+      deleteButtonWrapper.appendChild(attribute);
 
       const delButton = document.createElement("button");
       delButton.innerText = "delete"
@@ -79,8 +83,9 @@ function renderLinks() {
       delButton.addEventListener("click", (() => {
         delLink(linksParsed[i].id)
       }))
-      node.appendChild(delButton)
+      deleteButtonWrapper.appendChild(delButton)
 
+      node.appendChild(deleteButtonWrapper);
 
       const description = document.createElement("p");
       description.innerText = linksParsed[i].description;
@@ -97,7 +102,6 @@ function renderLinks() {
 
       node.appendChild(todoList);
 
-
       linkContainer.appendChild(node);
     }
   });
@@ -108,7 +112,7 @@ addNew.addEventListener("click", () => {
   addNewModal.style.pointerEvents = 'auto';
 })
 
-submitButton.addEventListener("click", () => {
+addModalForm.addEventListener("submit", () => {
   addLink(urlInput.value, descriptionInput.value, [todosInput.value]);
   addNewModal.style.opacity = '0';
   addNewModal.style.pointerEvents = 'none';

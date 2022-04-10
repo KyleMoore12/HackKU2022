@@ -2,12 +2,7 @@ let test = [{
     id: 'ojgfdsk',
     link: 'https://google.com',
     description: "this is google",
-    todos: ['check out google', 'testing']
-},{
-    id: 'ojgffdsdsk',
-    link: 'https://googlfsde.com',
-    description: "thfdsis is google",
-    todos: ['check out gofdsogle', 'testing']
+    todos: ['check out google']
 }]
 
 chrome.runtime.onInstalled.addListener(() => {

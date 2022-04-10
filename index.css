@@ -35,7 +35,7 @@ h1 {
     background-color: #4abdd4;
 }
 
-.buttonWrapper {
+.deleteButtonWrapper {
     display: flex;
     justify-content: space-between;
 }
