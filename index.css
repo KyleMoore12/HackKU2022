@@ -6,28 +6,16 @@ body {
     );
     min-width: 400px;
     max-width: 400px;   
-    min-height: 400px;
-    padding: 3em 0;
+    min-height: 310px;
 }
 
 h1 {
+    margin-top: 0px;
     margin-bottom: 10px;
     font-family: 'Beau Rivage', cursive;
     font-size: 24px;
     color: white;
-    padding-right: 240px;
     padding-left: 10px;
-    background-image: linear-gradient(
-        to right,
-        #307cff 65%,
-        red 65%,
-        red 85%,
-        #307cff 85%
-    );
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
 
 }
 #addModal {
